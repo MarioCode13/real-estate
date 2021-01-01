@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Dropdown from './components/Dropdown'
+import Hero from './components/Hero'
+import InfoSection from './components/InfoSection'
+import Navbar from './components/Navbar'
+import { InfoData, InfoDataTwo } from './data/InfoData'
+import GlobalStyle from './GlobalStyles'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggle = () => {
+        setIsOpen(!isOpen)
+    }
+
+    return (
+        <>
+            <GlobalStyle />
+            <Navbar toggle={toggle} />
+            <Dropdown isOpen={isOpen} toggle={toggle} />
+            <Hero />
+            <InfoSection {...InfoData} />
+            <InfoSection {...InfoDataTwo} />
+        </>
+    )
 }
 
-export default App;
+export default App
